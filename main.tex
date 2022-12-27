@@ -174,7 +174,7 @@ This template lacks the cover page of the graduation thesis (Design) of Nanjing 
 故此模板的编译方法为：Xe\TeX{}$\to$Bib\TeX{}$\to$Xe\TeX{}
 \subsection{字体格式}
 中文正文字体为宋体，标题字体为黑体。在\LaTeX{}中对中文字体进行\texttt{\textbackslash textbf}（加粗）显示为\textbf{黑体}，进行\texttt{\textbackslash textit}（斜体）显示为\textit{楷体}。\par
-英文字体为Times New Roman，进行加粗显示为\textbf{Text}，进行斜体显示为\textit{Text}。
+英文字体为Times New Roman，进行加粗显示为\textbf{Text}，进行斜体显示为\textit{Text}。\par
 正文字号为小四号字，标题字号为小二号字，其余字号参照《排版规范》设置。
 \section{模板使用方法}
 首先打开\texttt{main.tex}文件，阅读其中的代码：检查导言区设置的格式与学校要求的格式是否一致；了解文档中的新定义命令的含义及在文档中的使用；了解模板的结构；尝试运行编译此文档，检查是否有报错。\par
@@ -562,12 +562,12 @@ E=mc^2 \qedhere
     \caption{一张三线表。}
     \label{tab:widgets}
     \begin{tabular}{ccc}%tabular环境
-        \hline
+        \Xhline{1.5pt}
         项目 & 数量 & 版本\\
-        \hline
+        \Xhline{0.5pt}
         硬件 & 42  & 2022\\
         软件 & 13  & 2021\\
-        \hline
+        \Xhline{1.5pt}
     \end{tabular}
 \end{table}
 \end{lstlisting}
@@ -577,12 +577,12 @@ E=mc^2 \qedhere
     \caption{一张三线表。}
     \label{tab:widgets}
     \begin{tabular}{ccc}%tabular环境
-        \hline
+        \Xhline{1.5pt}
         项目 & 数量 & 版本\\
-        \hline
+        \Xhline{0.5pt}
         硬件 & 42  & 2022\\
         软件 & 13  & 2021\\
-        \hline
+        \Xhline{1.5pt}
     \end{tabular}
 \end{table}
 \section{图表题目（标签）排版}
@@ -608,5 +608,5 @@ E=mc^2 \qedhere
 \newpage
 \addcontentsline{toc}{chapter}{致谢}\tolerance=500 %将致谢放进目录
 \chapter*{致谢}
-\qquad 课设论文洋洋洒洒，行文至此，也意味着我们课程学习将要画上句点。回首过去一学期，若白驹过隙，忽然而已。触目所及之处，尽是挥不散的不舍与感恩。\par
+\qquad 这里写致谢\par
 \end{document} 
