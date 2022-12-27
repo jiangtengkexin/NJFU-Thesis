@@ -1,0 +1,604 @@
+\documentclass[oneside,zihao=-4]{ctexbook}
+%功能宏包
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{makecell}%表格内换行与各种居中
+\usepackage{float}
+\usepackage{longtable}%长表格
+\usepackage{threeparttable} %表格加标注
+\usepackage{changepage}
+\usepackage{xcolor,tcolorbox}
+
+
+%页边距、页面设置
+\usepackage[left=2.5cm,right=2cm,top=2.5cm,bottom=2cm]{geometry}
+%设置行距，全局字体
+\linespread{1.5}
+\setmainfont{Times New Roman}
+
+%设置标题样式
+\newcommand{\biaoti}{\centering\zihao{-2}\heiti}%标题样式
+\newcommand{\zhaiyao}{\centering\zihao{4}\heiti}%摘要样式
+\setcounter{secnumdepth}{4}%编号深度为4
+\usepackage{titlesec}%章节设置
+\titleformat{\chapter}%章标题
+[hang]
+{\centering\zihao{-2}\heiti}
+{\thechapter\quad}
+{0pt}
+{}
+{}
+\titleformat{\section}%节标题
+[hang]
+{\zihao{-3}\heiti}
+{\thesection\quad}
+{0pt}
+{}
+[]
+\titleformat{\subsection}%子节标题
+[hang]
+{\zihao{4}\heiti}
+{\thesubsection\quad}
+{0pt}
+{}
+[]
+\titleformat{\subsubsection}%子子节标题
+[hang]
+{\heiti}
+{\thesubsubsection\quad}
+{0pt}
+{}
+[]
+%页码
+\pagestyle{plain}%没有页眉，页脚包含一个居中的页码
+%代码块设置
+\usepackage{listings}%插入代码
+\newfontfamily\courier{Courier New}
+\lstset{
+    basicstyle          =   \zihao{5}\ttfamily,,          % 基本代码风格
+    keywordstyle        =   \bfseries,          % 关键字风格
+    commentstyle        =   \ttfamily\itshape,  % 注释的风格，斜体
+    stringstyle         =   \ttfamily,  % 字符串风格
+    flexiblecolumns,                % 别问为什么，加上这个
+    numbers             =   left,   % 行号的位置在左边
+    showspaces          =   false,  % 是否显示空格，显示了有点乱，所以不现实了
+    numberstyle         =   \zihao{5}\ttfamily,    % 行号的样式，小五号，tt等宽字体
+    showstringspaces    =   false,
+    captionpos          =   t,      % 这段代码的名字所呈现的位置，t指的是top上面
+    frame               =   lrtb,   % 显示边框
+    breaklines      =   true,
+}
+
+
+
+\title{南京林业大学本科毕业论文（设计）\LaTeX{}模板V1.0}
+\author{听风\\
+        南京林业大学 经济管理学院，江苏 南京 210037}
+\date{}
+
+\begin{document}
+\maketitle
+
+%中文标题
+\begin{center}
+    \biaoti{南京林业大学本科毕业论文（设计）\LaTeX{}模板V1.0}
+\end{center}
+% 中文摘要
+\begin{center}
+    \addcontentsline{toc}{chapter}{摘要}\tolerance=500 %将摘要放进目录
+    \zhaiyao{摘要}
+\end{center}
+
+这是一份南京林业大学本科毕业论文（设计）\LaTeX{}模板。此模板根据南京林业大学官方撰写规范及排版格式设计，由个人制作，并非是学校官方的\LaTeX{}模板。由于个人能力有限，设计模板或许有诸多不足之处，欢迎大家联系作者并协助修改。\par
+此模板缺少南京林业大学本科毕业论文（设计）的封面页，使用者可在填写学校提供的封面页后，导出为PDF格式，与此文档一同打印或者合并。同时欢迎有能力者制作排版论文的封面页。\par
+\textbf{关键词：}\LaTeX{}；模板；南京林业大学；毕业论文\\
+
+\pagenumbering{Roman} %设置罗马数字页码
+%结束中文摘要
+\newpage
+
+%英文标题
+\begin{center}
+    \biaoti{\LaTeX{} Template for Undergraduate
+Thesis of Nanjing Forestry University}
+\end{center}
+% 英文摘要
+\addcontentsline{toc}{chapter}{Abstract}\tolerance=500 %将摘要放进目录
+\begin{center}
+    \zhaiyao{Abstract}
+\end{center}
+
+This is a graduate thesis (Design) \LaTeX{} template of Nanjing Forestry University. This template is designed according to the official writing specifications and typesetting format of Nanjing Forestry University. It is made by individuals and is not the official \LaTeX{} template of the University. Due to limited personal ability, the design template may have many shortcomings. Please contact the author and assist in modification. \par
+This template lacks the cover page of the graduation thesis (Design) of Nanjing Forestry University. After filling in the cover page provided by the University, the user can export it to PDF format and print or merge it with this document. At the same time, those with the ability are welcome to make the cover page of the typesetting paper. \par
+\textbf{Key words：}templates; Nanjing Forestry University; dissertation\\
+
+%结束英文摘要
+
+% 目录
+\newpage
+\pagenumbering{arabic} %设置阿拉伯数字页码
+\tableofcontents
+
+
+% 正文
+\newpage
+\setcounter{page}{1}
+\chapter{前言}
+\section{背景}
+鉴于Microsoft Word不太适合排版学术论文，为了实现论文的排版的自动化、规范化，让学生更加专注于论文内容而不是排版格式，决定依照《南京林业大学本科生毕业论文（设计）撰写排版规范》（以下简称为《排版规范》）编写可用于南京林业大学本科生毕业论文写作的\LaTeX{}模板。
+\section{\LaTeX{}介绍}
+\TeX{}是高德纳(Donald E.Knuth) 开发的、以排版文字和数学公式为目的的一个计算机软件。\LaTeX{}为\TeX{}基础上的一套格式，令作者能够使用预定义的专业格式以较高质量排版和印刷他们的作品。专业的排版输出，产生的文档看上去就像“印刷品”一样。使用\LaTeX{}排版的优点如下：\cite{一份不太简短的LaTeX介绍}\par
+\begin{enumerate}
+  \item 方便而强大的数学公式排版能力，无出其右。
+  \item 绝大多数时候，用户只需专注于一些组织文档结构的基础命令，无需（或很少）操心文档的版面设计。
+  \item 很容易生成复杂的专业排版元素，如脚注、交叉引用、参考文献、目录等。
+  \item 强大的扩展性。世界各地的人开发了数以千计的\LaTeX{}宏包用于补充和扩展\LaTeX{}的功能。
+  \item \LaTeX{}促使用户写出结构良好的文档——而这也是\LaTeX{}存在的初衷。
+  \item \LaTeX{}依赖的\TeX{}排版引擎和其它软件是跨平台、免费、开源的。无论用户使用的是Windows，MacOS，GNU/Linux 还是FreeBSD 等操作系统，都能轻松获得和使用这一强大的排版工具。
+\end{enumerate}\par
+当然，使用\LaTeX{}排版文档也有其缺陷，如使用门槛高、对代码基础要求高、排查错误困难等，在本模板中会给出排版\LaTeX{}的方法。如果要进一步学习\LaTeX{}，则可参考官方中文文档《一份不太简短的\LaTeXe{}介绍》和刘海洋的《\LaTeX{}入门》。使用网络资源以进一步提高你的\LaTeX{}排版能力。
+\section{使用\LaTeX{}模板排版文档的准备}
+\subsection{离线排版文档}
+如果你需要在离线环境下使用\LaTeX{}（即像使用Word那样排版时不依赖网络环境），则应在电脑上安装\TeX{}发行版以及合适的编辑器。
+\begin{enumerate}
+  \item Windows端\par
+  \qquad 先安装\TeX{}Live，由于官网地址在国外，受网络环境影响较大，推荐使用国内镜像网站，如清华镜像等。由于要安装数千个宏包，故安装时间可能比较长。注意系统环境变量会直接影响\TeX{}Live的安装，请在安装前参照网络上的教程。\par
+  \qquad \TeX{}Live安装完成后，再安装合适的编辑器，如：Visual Studio Code，WinEdt11，\TeX{} Studio等，选择其中一种安装即可，参照网络上的教程进行相应的配置。
+  \item MacOS端\par
+  \qquad 先安装Mac\TeX{}，完成后可使用默认的编辑器编辑。也可以安装Visual Studio Code或\TeX{} Studio编辑。请在使用前进行相关配置。
+\end{enumerate}
+\subsection{在线排版文档}
+如果你想要移动化排版（比如想要在平板或手机上进行排版编辑，或者是在图书馆等场景编辑）或者你的电脑不能成功安装\TeX{}发行版，则可以使用在线网站进行排版。此方法不受系统平台和系统配置的限制，但对网络环境有所要求。\par
+推荐的网站有：Overleaf和\TeX{}Page等，请仔细阅读和比较网络平台对免费帐户的限制和付费计划。
+
+\chapter{NJFU模板使用说明}
+\section{适用人群}
+本模板适用于以下人群（符合条件之一即可）：
+\begin{itemize}
+    \item 南京林业大学学生；
+    \item 需要排版出专业规范的论文；
+    \item 有一定的\LaTeX{}的基础；
+    \item 尚未了解\LaTeX{}但不善于Word排版。
+\end{itemize}
+\section{模板基本设置}
+\subsection{模板文档类}
+本模板使用\texttt{ctexbook}作为基本文档类，模板格式的设置均基于此文档类。
+\subsection{模板编译方法}
+中文文档编译选择Xe\TeX{}编译器进行编译，在一些\LaTeX{}编辑器中，需要将默认的pdf\TeX{}更改为Xe\TeX{}，前者仅支持英文排版，后者支持中英文混合排版。\par
+本模板中含有目录，需要对文档进行两次编译才能生成目录。\par
+本模板中含有参考文献，使用Bib\TeX{}进行编译。\par
+故此模板的编译方法为：Xe\TeX{}$\to$Bib\TeX{}$\to$Xe\TeX{}
+\subsection{字体格式}
+中文正文字体为宋体，标题字体为黑体。在\LaTeX{}中对中文字体进行\texttt{\textbackslash textbf}（加粗）显示为\textbf{黑体}，进行\texttt{\textbackslash textit}（斜体）显示为\textit{楷体}。\par
+英文字体为Times New Roman，进行加粗显示为\textbf{Text}，进行斜体显示为\textit{Text}。
+正文字号为小四号字，标题字号为小二号字，其余字号参照《排版规范》设置。
+\section{模板使用方法}
+首先打开\texttt{main.tex}文件，阅读其中的代码：检查导言区设置的格式与学校要求的格式是否一致；了解文档中的新定义命令的含义及在文档中的使用；了解模板的结构；尝试运行编译此文档，检查是否有报错。\par
+然后复制\texttt{main.tex}文件，删除其中的文字内容（即输出到PDF上的文字），编辑和填充自己的内容上去，编译并检查报错。
+\section{模板的不足}
+由于个人能力有限，此模板有诸多不足之处：
+\begin{enumerate}
+  \item 缺少封面页。\par
+  \qquad 由于学校官方的封面模板没有直接给出排版规范，难以根据官方模板制作封面页。故建议大家用此模板（即用\LaTeX{}排版的模板）生成目录、正文和参考文献，再用学校官方的封面页编辑后输出PDF，后续进行PDF合并或者打印。
+  \item 行间距设置\par
+  \qquad 本模板的行距设置为1.5倍行间距，而学校官方模板中出现标题、正文行间距、图片行间距不同的现象，并且同时使用单倍行间距、多倍行间距和固定值，这增加了模板制作和排版的难度。
+  \item 图片与表格的设置\par
+  \qquad 图片和表格的格式使用\LaTeX{}的基本格式，并未参照《排版规范》进行设置。
+\end{enumerate}\par
+由于不同导师对文章格式要求的不同以及学校的排版规范不改变，本模板的格式仅为一种通用格式。若发现此模板与官方模板的格式不同，则欢迎大家联系作者并协助修改。
+
+\chapter{用\LaTeX{}排版文字}
+ \qquad 为了便于使用者快速上手使用，下面是一些\LaTeX{}基本教程\footnote{更多的功能实现和教程，请参考官方中文文档《一份不太简短的\LaTeXe{}介绍》和刘海洋的《\LaTeX{}入门》。在网络上搜索需要实现的功能并阅读相应的教程及代码。}
+\section{了解代码结构}
+在\LaTeX{}中，一切功能的实现均依赖命令与环境。\LaTeX{}命令以反斜线\ \textbackslash \ 开头，有以下两种形式：
+\begin{enumerate}
+  \item 反斜线和后面的一串字母，如\texttt{\textbackslash LaTeX}。它们用任意非字母符号（空格、数字、标点等）分隔开。
+  \item 反斜线和后面的一个非字母符号，如\texttt{\textbackslash \$}。它们无需分隔符。
+\end{enumerate}\par
+要注意\LaTeX{}命令是\textbf{对大小写敏感的}，比如输入\texttt{\textbackslash LaTeX}命令可以生成错落有致的\LaTeX{}字母组合，但输入\texttt{\textbackslash Latex} 或者\texttt{\textbackslash LaTex} 什么都得不到，还会报错。\par
+大多数的\LaTeX{}命令是带一个或多个参数，每个参数用花括号\{和\}包裹。有些命令带一个或多个可选参数，以方括号[和]包裹。还有些命令在命令名称后可以带一个星号*，带星号和不带星号的命令效果有一定差异。\par
+\LaTeX{}还引入了环境的用法，用以令一些效果在局部生效，或是生成特定的文档元素。\LaTeX{}环境的用法为一对命令\texttt{\textbackslash begin} 和\texttt{\textbackslash end}：
+\begin{lstlisting}[language=tex]
+\begin{<environment name>}{<arguments>}
+...
+\end{<environment name>}
+\end{lstlisting}\par
+其中<environment name>为环境名，\texttt{\textbackslash begin}和\texttt{\textbackslash end}中填写的环境名应当一致。\texttt{\textbackslash begin}  在
+<environment name> 后可以带一个或多个参数，甚至可选参数。环境允许嵌套使用。\par
+\newpage
+有了前面的基础，我们可以阅读下面的代码。\par
+\begin{lstlisting}[language=tex]
+\documentclass[oneside,zihao=-4]{ctexbook}%设置文档类
+%加载功能宏包
+\usepackage{amsmath}
+……
+%页边距、页面、行距、全局字体 设置
+\usepackage[left=2.5cm,right=2cm,top=2.5cm,bottom=2cm]{geometry}
+……
+\title{}\author{}\date{}
+
+\begin{document}
+\maketitle%标题页
+\begin{abstract}
+    摘要内容
+\end{abstract}
+% 目录
+\tableofcontents
+% 正文
+\newpage
+\chapter{}%第一章
+    \section{}%第一章第一节
+\chapter{}%第二章
+……
+% 参考文献
+\addcontentsline{toc}{chapter}{参考文献}
+\bibliographystyle{plain}
+\bibliography{reference}
+% 附录
+……
+%致谢
+……
+
+\end{document}
+\end{lstlisting}\par
+这是一份简化的\LaTeX{}文档源码。\par
+\LaTeX{}源代码以\texttt{\textbackslash documentclass}命令作为开头，在这里设置文档类和文档属性。\par
+紧接着我们可以用\texttt{\textbackslash usepackage}命令调用宏包，比如我们调用颜色\texttt{xcolor}宏包：\par\texttt{\textbackslash usepackage\{xcolor\}}\par
+再接着，我们需要用以下一对命令来标记正文内容的开始位置和结束位置，而将正文内容写入其中：\par
+\texttt{\textbackslash begin\{document\}}\par
+\texttt{\textbackslash end\{document\}}\par
+在\texttt{\textbackslash documentclass}和\texttt{\textbackslash begin\{document\}}之间的区域称为\textbf{导言区}。在导言区里我们可以对文档的样式进行设置，并且加载宏包以实现我们需要的功能。\par
+为了便于阅读和理解，我们需要对代码进行注释。在\LaTeX{}中，用\%注释百分号后面一整行的内容，注释的内容不会输出到PDF中。通过阅读注释，我们可以轻松地理解代码内容。\par
+\section{基本文字编辑}
+\subsection{缩进、换行与空格}
+通常情况下，我们的正文是默认首行缩进2字符的。但在一些环境中是没有首行缩进的，此时如果需要缩进，我们可以使用命令\texttt{\textbackslash quad }实现缩进，注意要在quad后面输入一个空格，以区分开命令和文字，否则会报错。一个q代表缩进一个字符，如要缩进2字符，则将quad改为qquad，有几个q代表缩进几个字符。后面依次类推。\par
+我们还需要对文字进行换行。\LaTeX{}里换行文字不同于Word，后者只需要按Enter键即可。\LaTeX{}中换行可以使用两种命令：\texttt{\textbackslash par}或者\texttt{\textbackslash\textbackslash}。建议在正文中使用\texttt{\textbackslash par}命令，而在表格等特殊环境中使用\texttt{\textbackslash\textbackslash}命令。\par
+\LaTeX{}源代码中，空格键和Tab键输入的空白字符视为“空格”。连续的若干个空白字符视为一个空格。一行开头的空格忽略不计。
+\subsection{特殊字符}
+以下字符在\LaTeX{} 里有特殊用途，如\texttt{\%}表示注释，
+\texttt{\$}排版数学公式等等。如果想要输入以上符号，需要使用以下带反斜线的形式输入：\par
+\# \$ \% \& \{ \} \_ \^{} \~{} \textbackslash\par
+\begin{lstlisting}
+\# \$ \% \& \{ \} \_\^{} \~{} \textbackslash
+\end{lstlisting}
+\chapter{排版数学公式}
+\qquad \LaTeX{}最强大、最知名的地方在于其对数学公式的排版能力，你可以使用\LaTeX{}排版所有的数学公式。掌握了\LaTeX{}语法后，你不仅可以在\LaTeX{}编辑器中排版数学公式，还可以在其他支持\LaTeX{}语法的平台上编辑公式，如Word，MathType等，甚至知乎平台也支持\LaTeX{}语法。\footnote{更多的数学排版教程，请参考官方中文文档《一份不太简短的\LaTeXe{}介绍》。}\par
+加载\texttt{amsmath}宏包以排版数学公式。\par
+\section{行内公式与行间公式}
+数学公式有两种排版方式：其一是与文字混排，称为行内公式；其二是单独列为一行排版，称为行间公式。\par
+行内公式由一对\texttt{\$}符号包裹：
+\begin{lstlisting}
+$a$，$a,b,c$，$a^2 + b^2 = c^2$
+\end{lstlisting}\par
+输出效果：$a$，$a,b,c$，$a^2 + b^2 = c^2$。\par
+单独成行的行间公式在\LaTeX{}里由\texttt{equation} 环境包裹。\texttt{equation}环境为公式自动生成一
+个编号，这个编号可以用\texttt{\textbackslash label}和\texttt{\textbackslash ref}生成交叉引用，\texttt{amsmath}的\texttt{\textbackslash eqref}命令甚至为引用自动加上圆括号；还可以用\texttt{\textbackslash tag}命令手动修改公式的编号，或者用\texttt{\textbackslash notag}命令取消为公式编号（与之基本等效的命令是\texttt{\textbackslash nonumber}）。
+\begin{lstlisting}
+Add $a$ squared and $b$ squared to get $c$ squared
+\begin{equation}
+a^2 + b^2 = c^2
+\end{equation}
+Einstein says
+\begin{equation}
+E = mc^2 \label{clever}
+\end{equation}
+This is a reference to \eqref{clever}.
+It’s wrong to say
+\begin{equation}
+1 + 1 = 3 \tag{dumb}
+\end{equation}
+or
+\begin{equation}
+1 + 1 = 4 \notag
+\end{equation}
+\end{lstlisting}\par
+输出效果：\par
+Add $a$ squared and $b$ squared to get $c$ squared
+\begin{equation}
+a^2 + b^2 = c^2
+\end{equation}
+Einstein says
+\begin{equation}
+E = mc^2 \label{clever}
+\end{equation}
+This is a reference to \eqref{clever}.
+It’s wrong to say
+\begin{equation}
+1 + 1 = 3 \tag{dumb}
+\end{equation}
+or
+\begin{equation}
+1 + 1 = 4 \notag
+\end{equation}\par
+当然你不会愿意为每个公式都手动取消编号。\LaTeX{}提供了一对命令\texttt{\textbackslash[} 和\texttt{\textbackslash]}用于生成不带编号的行间公式。有的人更喜欢\texttt{equation*}环境，体现了带星号和不带星号的环境之间的区别。
+\begin{lstlisting}
+Again\ldots
+\begin{equation*}
+a^2 + b^2 = c^2
+\end{equation*}
+or you can type less for thesame effect:
+\[ a^2 + b^2 = c^2 \]
+\end{lstlisting}\par
+输出效果：\par
+Again\ldots
+\begin{equation*}
+a^2 + b^2 = c^2
+\end{equation*}
+or you can type less for the
+same effect:
+\[ a^2 + b^2 = c^2 \]\par
+我们通过一个例子展示行内公式和行间公式的对比。为了与文字相适应，行内公式在排版大的公式元素（分式、巨算符等）时显得很“局促”：
+\begin{lstlisting}
+In text:
+$\lim_{n \to \infty}\sum_{k=1}^n \frac{1}{k^2}= \frac{\pi^2}{6}$.\par
+In display:
+\[
+\lim_{n \to \infty}\sum_{k=1}^n \frac{1}{k^2}= \frac{\pi^2}{6}
+\]
+\end{lstlisting}\par
+输出效果：\par
+In text:
+$\lim_{n \to \infty}
+\sum_{k=1}^n \frac{1}{k^2}
+= \frac{\pi^2}{6}$.\par
+In display:
+\[
+\lim_{n \to \infty}
+\sum_{k=1}^n \frac{1}{k^2}
+= \frac{\pi^2}{6}
+\]
+\section{数学符号}
+我们通过一个例子来学习数学符号的排版。
+\begin{lstlisting}
+设$X_1,X_2,\cdots,X_n$是一个独立且分布相同的随机变量序列，$\text{E}[X_i] = \mu$和$\text{Var}[X_i] = \sigma^2 < \infty$，并让
+\[S_n = \frac{X_1 + X_2 + \cdots + X_n}{n}= \frac{1}{n}\sum_{i=1}^{n} X_i\]
+表示他们的意思。然后，当$n$接近无穷大时，随机变量$\sqrt{n}(S_n - \mu)$分布收敛到正常的$\mathcal{N}(0, \sigma^2)$。
+\end{lstlisting}\par
+输出效果：\par
+设$X_1,X_2,\cdots,X_n$是一个独立且分布相同的随机变量序列，
+$\text{E}[X_i] = \mu$和$\text{Var}[X_i] = \sigma^2 < \infty$，并让
+\[S_n = \frac{X_1 + X_2 + \cdots + X_n}{n}
+      = \frac{1}{n}\sum_{i=1}^{n} X_i\]
+表示他们的意思。然后，当$n$接近无穷大时，随机变量$\sqrt{n}(S_n - \mu)$分布收敛到正常的$\mathcal{N}(0, \sigma^2)$。\par
+\section{定理环境}
+使用\LaTeX{}排版数学和其他科技文档时，会接触到大量的定理、证明等内容。\LaTeX{}提供了
+一个基本的命令\texttt{\textbackslash newtheorem} 提供定理环境的定义：
+\begin{lstlisting}
+\newtheorem{<type>}{<title>}[<section-name>]
+\newtheorem{<type>}[<counter>]{<title>}
+\end{lstlisting}
+<type>为定理类型的名称，作为一个环境来使用。定理环境都需要定义，\LaTeX{}里没有现成
+的\texttt{theorem 环境}，直接使用很可能会出错。<title>是定理类型的标签（“定理”，“公理”等），排
+版在序号之前。
+定理的序号由两个可选参数之一决定，它们不能同时使用：
+\begin{enumerate}
+  \item <section name>为章节名称，这使定理序号成为章节的下一级序号；
+  \item <counter> 为用\texttt{\textbackslash newcounter}自定义的计数器名称，定理序号由这个计数器
+管理。
+\end{enumerate}\par
+如果两个可选参数都不用的话，则使用一个默认的计数器。
+例如，我们用以下代码定义了一个\texttt{thm} 环境：
+\begin{lstlisting}
+\newtheorem{thm}{Theorem}[chapter]
+\end{lstlisting}\par
+于是我们可以使用\texttt{thm}环境排版定理。定理带一个可选参数，用于注明定理的名称，如
+“法拉第定律”等。在环境内还可以用\texttt{\textbackslash label}声明引用：
+\begin{lstlisting}
+\newtheorem{thm}{Theorem}[chapter]
+\begin{thm}\label{thm:light}
+The light speed in vaccum is $299,792,458\,\mathrm{m/s}$.真空中的光速为$299,792,458\,\mathrm{m/s}$
+\end{thm}
+\begin{thm}[Energy]
+The relationship of energy, momentum and mass is
+\[E^2 = m_0^2 c^4 + p^2 c^2\]
+where $c$ is the light speed described in theorem \ref{thm:light}.\par
+能量、动量和质量的关系是
+\[E^2=m_0^2C^4+p^2C ^2\]
+其中，$c$是定理\ref{thm:light}中描述的光速
+\end{thm}
+\end{lstlisting}\par
+输出效果：\par
+\newtheorem{thm}{Theorem}[chapter]
+\begin{thm}\label{thm:light}
+The light speed in vaccum is $299,792,458\,\mathrm{m/s}$.真空中的光速为$299,792,458\,\mathrm{m/s}$。
+\end{thm}
+\begin{thm}[Energy]
+The relationship of energy, momentum and mass is
+\[E^2 = m_0^2 c^4 + p^2 c^2\]
+where $c$ is the light speed described in theorem \ref{thm:light}.\par
+能量、动量和质量的关系是
+\[E^2=m_0^2C^4+p^2C ^2\]
+其中，$c$是定理\ref{thm:light}中描述的光速。
+\end{thm}
+\section{证明环境和证毕符号}
+加载\texttt{amsthm}宏包，其提供了一个\texttt{proof}环境用于排版定理的证明过程。\texttt{proof}环境末尾自动加上一个证毕符号：
+\begin{lstlisting}
+\begin{proof}
+For simplicity, we use
+\[
+E=mc^2
+\]
+That’s it.
+\end{proof}
+\end{lstlisting}\par
+输出效果：\par
+\begin{proof}
+For simplicity, we use
+\[
+E=mc^2
+\]
+That’s it.
+\end{proof}\par
+如果行末是一个不带编号的公式， 符号会另起一行，这时可使用\texttt{\textbackslash qedhere }命令将符
+号放在公式末尾：
+\begin{lstlisting}
+For simplicity, we use
+\[
+E=mc^2 \qedhere
+\]
+\end{proof}
+\end{lstlisting}\par
+输出效果：\par
+\begin{proof}
+For simplicity, we use
+\[
+E=mc^2 \qedhere
+\]
+\end{proof}
+\texttt{\textbackslash qedhere }对于\texttt{align*}等命令也有效：
+\begin{lstlisting}
+\begin{proof}
+Assuming $\gamma = 1/\sqrt{1-v^2/c^2}$, then
+\begin{align*}
+E &= \gamma m_0 c^2 \\
+p &= \gamma m_0v \qedhere
+\end{align*}
+\end{proof}
+\end{lstlisting}\par
+输出效果：\par
+\begin{proof}
+Assuming $\gamma
+= 1/\sqrt{1-v^2/c^2}$, then
+\begin{align*}
+E &= \gamma m_0 c^2 \\
+p &= \gamma m_0v \qedhere
+\end{align*}
+\end{proof}
+在使用带编号的公式时，建议最好不要使用\texttt{\textbackslash qedhere }命令，而是让\texttt{proof}环境自动生成。
+对带编号的公式使用\texttt{\textbackslash qedhere }命令会使符号放在一个难看的位置，紧贴着公式：
+\begin{lstlisting}
+\begin{proof}
+For simplicity, we use
+\begin{equation}
+E=mc^2.
+\end{equation}
+\end{proof}
+\end{lstlisting}\par
+输出效果：\par
+\begin{proof}
+For simplicity, we use
+\begin{equation}
+E=mc^2.
+\end{equation}
+\end{proof}
+在\texttt{align}等环境中使用\texttt{\textbackslash qedhere }命令会使盖掉公式的编号；使用\texttt{equation}嵌套\texttt{aligned}等环境时，\texttt{\textbackslash qedhere }命令会将直接放在公式后。这些位置都不太正常。
+证毕符号本身被定义在命令\texttt{\textbackslash qedsymbol}中，如果有使用实心符号作为证毕符号的需求，
+需要自行用\texttt{\textbackslash renewcommand}命令修改。我们可以利用标尺盒子来生成一个适当大小的“实心矩形”：
+\begin{lstlisting}
+\renewcommand{\qedsymbol}%
+{\rule{1.5ex}{1.5ex}}
+\begin{proof}
+For simplicity, we use
+\[
+E=mc^2 \qedhere
+\]
+\end{proof}
+\end{lstlisting}\par
+输出效果：\par
+\renewcommand{\qedsymbol}%
+{\rule{1.5ex}{1.5ex}}
+\begin{proof}
+For simplicity, we use
+\[
+E=mc^2 \qedhere
+\]
+\end{proof}
+
+\chapter{图片与表格排版}
+\qquad 在\LaTeX{}中进行图片与表格排版，需要加载新的宏包。本模板中的图片与表格格式设置为\LaTeX{}默认格式。\footnote{更多的图片与表格排版教程，请参考官方中文文档《一份不太简短的\LaTeXe{}介绍》。}\par
+\section{插入图片}
+加载\texttt{graphicx}宏包以插入图片。\par
+\LaTeX{}支持插入诸多格式的图片，如PNG、JPG、PDF和EPS等。本模板推荐使用PNG和PDF格式的图片。前者为高质量的像素图片，后者可以输出为矢量图。在\LaTeX{}中，我们更推荐使用矢量图来排版专业的学术论文。\par
+\subsection{图片路径管理}
+如果论文涉及到的图片数量相对较少，我们推荐将图片存放到与\texttt{main.tex}文件的根目录下。在排版时不需要输入图片绝对路径，只需要输入图片文件名即可。（这是相对路径排版方式）\par
+反之，我们将图片存放到一个专门的文件夹如\texttt{figures}等，在排版时需要输入图片绝对路径和文件名。
+\subsection{图片制作}
+在制图软件里，我们可以使用“打印/输出为PDF”以生成PDF矢量图，对于SVG等格式的矢量图文件，可以使用Adobe Illustrator或Inkscape等软件编辑并输出为PDF。\par
+有\LaTeX{}代码能力的。可以选择“导出TikZ代码”，使用TikZ绘图语言绘图。
+\subsection{加载图片命令}
+使用\texttt{\textbackslash includegraphics}命令加载图片：
+\begin{lstlisting}
+\includegraphics[<options>]{<filename>}
+\end{lstlisting}\par
+其中<options>定义图片的尺寸，<filename>为图片文件名和文件路径。我们还可以为图片添加题注\texttt{caption}和标签\texttt{label}，具体代码如下所示：
+\begin{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=5cm]{logo校徽.png}
+    \caption{南京林业大学LOGO}
+    \label{njfulogo}
+\end{figure}
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=5cm]{logo校徽.png}
+    \caption{南京林业大学LOGO（相对路径）}
+    \label{njfulogo}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=12cm]{H:\大学\latex学习\南京林业大学论文模板\figures\马科维茨有效边界.pdf}
+    \caption{马科维茨有效前沿（绝对路径）}
+    \label{Markowitz Efficient Frontier}
+\end{figure}
+\section{插入表格}
+我们使用\texttt{table}和\texttt{tabular}环境来插入表格。\par
+阅读如下的代码，学习插入表格的基本框架：
+\begin{lstlisting}
+\begin{table}[htpb]%table环境
+    \centering
+    \caption{一张三线表。}
+    \label{tab:widgets}
+    \begin{tabular}{ccc}%tabular环境
+        \hline
+        项目 & 数量 & 版本\\
+        \hline
+        硬件 & 42  & 2022\\
+        软件 & 13  & 2021\\
+        \hline
+    \end{tabular}
+\end{table}
+\end{lstlisting}
+输出格式：
+\begin{table}[htpb]%table环境
+    \centering
+    \caption{一张三线表。}
+    \label{tab:widgets}
+    \begin{tabular}{ccc}%tabular环境
+        \hline
+        项目 & 数量 & 版本\\
+        \hline
+        硬件 & 42  & 2022\\
+        软件 & 13  & 2021\\
+        \hline
+    \end{tabular}
+\end{table}
+\section{图表题目（标签）排版}
+图表题目（标签）排版遵循“表上图下”的原则。
+
+
+
+
+
+
+% 参考文献
+\newpage
+\addcontentsline{toc}{chapter}{参考文献}
+\bibliographystyle{plain}
+\bibliography{reference}
+% 附录
+\newpage
+\addcontentsline{toc}{chapter}{附录}\tolerance=500 %将致谢放进目录
+\chapter*{附录}
+\qquad 这里是附录。\par
+
+%致谢
+\newpage
+\addcontentsline{toc}{chapter}{致谢}\tolerance=500 %将致谢放进目录
+\chapter*{致谢}
+\qquad 课设论文洋洋洒洒，行文至此，也意味着我们课程学习将要画上句点。回首过去一学期，若白驹过隙，忽然而已。触目所及之处，尽是挥不散的不舍与感恩。\par
+\end{document} 
